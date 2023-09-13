@@ -190,11 +190,11 @@ POP: 'POP'{System.out.print("<POP>");};
 
 SHLOAD: 'SHLOAD'{System.out.print("<SHLOAD>");};
 
-SIN: 'SIN'{System.out.print("<SIN>");};
+SIN: 'SIN'{System.out.print("<SIN>");}; 
 
-COS: 'COS'{System.out.print("<COS>");};
+COS: 'COS'{System.out.print("<COS>");}; 
 
-TAN: 'TAN'{System.out.print("<TAN>");};
+TAN: 'TAN'{System.out.print("<TAN>");}; 
 
 ATN: 'ATN'{System.out.print("<ATN>");};
 
@@ -202,11 +202,11 @@ RND: 'RND'{System.out.print("<RND>");};
 
 SGN: 'SGN'{System.out.print("<SGN>");};
 
-EXP: 'EXP'{System.out.print("<EXP>");};
+EXP: 'EXP'{System.out.print("<EXP>");}; 
 
-LOG: 'LOG'{System.out.print("<LOG>");};
+LOG: 'LOG'{System.out.print("<LOG>");}; 
 
-ABS: 'ABS'{System.out.print("<ABS>");};
+ABS: 'ABS'{System.out.print("<ABS>");}; 
 
 STORE: 'STORE'{System.out.print("<STORE>");};
 
@@ -236,9 +236,17 @@ CLS: 'CLS' {System.out.print("cls");};
 
 COMMENT: REM ~ [\r\n]* {System.out.print("<comment>");};
 
-STRINGLITERAL: '"' ~ ["\r\n]* '"' {System.out.print("<string>");};
+LETTERS: ('A' .. 'Z') {System.out.print("<letters>");};
 
-LETTERS: ('A' .. 'Z')+ {System.out.print("<letters>");};
+DIGIT: ('0' .. '9');
+
+FUNCTIONLITERAL: 'FN'(LETTERS) {System.out.print("<FUNCTION NAME>");};
+
+IDENTIFIER: LETTERS (LETTERS | DIGIT) {System.out.print("<ID>");};
+
+STRINGIDENTIFER: IDENTIFIER'$' {System.out.print("<STR_ID>");};
+
+STRINGLITERAL: '"' ~ ["\r\n]* '"' {System.out.print("<string>");};
 
 NUMBER: ('0' .. '9')+ ('E' NUMBER)* {System.out.print("<number>");};
 
